@@ -34,6 +34,22 @@ const db = new sqlite3.Database(dbPath, (err) => {
       message TEXT,
       consent BOOLEAN NOT NULL
     )`);
+        
+        // Token requests table
+        db.run(`CREATE TABLE IF NOT EXISTS token_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      request_id TEXT UNIQUE NOT NULL,
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+      user_name TEXT,
+      action_type TEXT NOT NULL,
+      bird_species TEXT,
+      confidence REAL,
+      location TEXT,
+      tokens_requested INTEGER NOT NULL,
+      status TEXT DEFAULT 'pending',
+      admin_notes TEXT,
+      allocated_at DATETIME
+    )`);
     }
 });
 
@@ -106,6 +122,134 @@ app.get('/api/pledges', (req, res) => {
       });
 });
 */
+
+// === BLOCKCHAIN INTEGRATION ENDPOINTS ===
+
+// POST: Request conservation tokens
+app.post('/api/conservation/request-token', (req, res) => {
+    const { 
+        userName, 
+        actionType, 
+        birdSpecies, 
+        confidence, 
+        location, 
+        tokensRequested 
+    } = req.body;
+
+    if (!actionType || !tokensRequested) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const requestId = `REQ-KB-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    const sql = `INSERT INTO token_requests 
+        (request_id, user_name, action_type, bird_species, confidence, location, tokens_requested, status) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')`;
+    
+    const params = [requestId, userName, actionType, birdSpecies, confidence, location, tokensRequested];
+
+    db.run(sql, params, function (err) {
+        if (err) {
+            console.error('Token request error:', err.message);
+            return res.status(400).json({ error: err.message });
+        }
+        
+        // In production, this would trigger notification to blockchain admin
+        console.log(`✅ Token request created: ${requestId}`);
+        console.log(`   Action: ${actionType}, Species: ${birdSpecies}, Tokens: ${tokensRequested}`);
+        
+        res.json({
+            success: true,
+            requestId: requestId,
+            message: 'Token request submitted to Conservation Authority',
+            status: 'pending',
+            estimatedTokens: tokensRequested
+        });
+    });
+});
+
+// POST: Webhook for token allocation confirmation (called by blockchain admin)
+app.post('/api/token-allocated', (req, res) => {
+    const { requestId, status, adminNotes } = req.body;
+
+    if (!requestId) {
+        return res.status(400).json({ error: 'Missing requestId' });
+    }
+
+    const sql = `UPDATE token_requests 
+        SET status = ?, admin_notes = ?, allocated_at = CURRENT_TIMESTAMP 
+        WHERE request_id = ?`;
+    
+    const params = [status || 'approved', adminNotes || '', requestId];
+
+    db.run(sql, params, function (err) {
+        if (err) {
+            console.error('Token allocation update error:', err.message);
+            return res.status(400).json({ error: err.message });
+        }
+        
+        if (this.changes === 0) {
+            return res.status(404).json({ error: 'Request not found' });
+        }
+        
+        console.log(`✅ Token allocation updated: ${requestId} → ${status}`);
+        
+        res.json({
+            success: true,
+            message: 'Token allocation recorded',
+            requestId: requestId
+        });
+    });
+});
+
+// GET: Get token requests (for admin dashboard)
+app.get('/api/token-requests', (req, res) => {
+    const status = req.query.status; // optional filter: pending, approved, rejected
+    
+    let sql = `SELECT * FROM token_requests`;
+    let params = [];
+    
+    if (status) {
+        sql += ` WHERE status = ?`;
+        params.push(status);
+    }
+    
+    sql += ` ORDER BY timestamp DESC LIMIT 100`;
+
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        
+        res.json({
+            success: true,
+            count: rows.length,
+            requests: rows
+        });
+    });
+});
+
+// GET: Get single token request status
+app.get('/api/token-requests/:requestId', (req, res) => {
+    const { requestId } = req.params;
+    
+    const sql = `SELECT * FROM token_requests WHERE request_id = ?`;
+
+    db.get(sql, [requestId], (err, row) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        
+        if (!row) {
+            return res.status(404).json({ error: 'Request not found' });
+        }
+        
+        res.json({
+            success: true,
+            request: row
+        });
+    });
+});
 
 
 app.listen(PORT, () => {

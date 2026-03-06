@@ -20,6 +20,7 @@ import pelicanImg from './assets/pelican_gen.png';
 import villageImg from './assets/village_birds_gen.png';
 
 import { useState } from 'react';
+import BirdIdentification from './components/BirdIdentification';
 
 function PledgeForm() {
   const [formData, setFormData] = useState({
@@ -553,6 +554,11 @@ function App() {
             <Globe size={16} /> Data synced to Public Registry (Google Sheets)
           </div>
         </div>
+      </section>
+
+      {/* 🟢 AI BIRD IDENTIFICATION & BLOCKCHAIN REWARDS */}
+      <section className="py-24 px-6 bg-gradient-to-br from-cyan-50 via-green-50 to-blue-50" id="ai-rewards">
+        <BirdIdentification />
       </section>
 
       {/* 🟢 CALL TO ACTION & FOOTER */}
