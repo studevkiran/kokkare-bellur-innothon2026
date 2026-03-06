@@ -200,19 +200,20 @@ function App() {
     <div className="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-stone-900 overflow-x-hidden">
 
       {/* 🟢 HERO SECTION - Presentation Title Slide */}
-      <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden w-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
-                            radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                            radial-gradient(circle at 50% 50%, rgba(251, 146, 60, 0.2) 0%, transparent 50%)`,
-            animation: 'pulse 8s ease-in-out infinite'
-          }}></div>
-        </div>
+      <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden w-full">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
         
         {/* Dark Overlay for text contrast */}
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
 
         {/* Presentation Content - Centered, Formal */}
         <div className="relative z-20 text-center px-4 sm:px-6 md:px-8 max-w-6xl mx-auto text-white space-y-6 md:space-y-8 py-8 w-full">
