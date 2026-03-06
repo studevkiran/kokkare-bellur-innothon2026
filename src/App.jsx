@@ -14,9 +14,6 @@ import {
   Trash2,
   Activity // Importing Activity to fix potential missing export issue
 } from 'lucide-react';
-import paintedStorkImg from './assets/painted_stork_gen.png';
-import pelicanImg from './assets/pelican_gen.png';
-import villageImg from './assets/village_birds_gen.png';
 
 import { useState } from 'react';
 import ConservationActions from './components/ConservationActions';
@@ -304,7 +301,7 @@ function App() {
         </div>
         <div className="h-full min-h-[500px] bg-stone-200 rounded-3xl overflow-hidden relative group shadow-2xl">
           <img
-            src={villageImg}
+            src="/village_birds_gen.png"
             alt="Spot-billed Pelican in flight"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
@@ -373,7 +370,7 @@ function App() {
           <div className="group rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-stone-100">
             <div className="h-80 overflow-hidden relative">
               <img
-                src={paintedStorkImg}
+                src="/painted_stork_gen.png"
                 alt="Painted Stork"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -396,7 +393,7 @@ function App() {
           <div className="group rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-stone-100">
             <div className="h-80 overflow-hidden relative">
               <img
-                src={pelicanImg}
+                src="/pelican_gen.png"
                 alt="Spot-Billed Pelican"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
