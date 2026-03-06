@@ -207,39 +207,79 @@ function App() {
             loop
             muted
             playsInline
+            webkit-playsinline="true"
             preload="auto"
             className="w-full h-full object-cover"
+            onLoadedData={(e) => e.target.play().catch(() => {})}
           >
             <source src="/hero.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          {/* Simple dark overlay - no gradients */}
-          <div className="absolute inset-0 bg-black/60"></div>
+          {/* Simple dark overlay */}
+          <div className="absolute inset-0 bg-black/65"></div>
         </div>
 
         {/* Presentation Content - Centered, Formal */}
-        <div className="relative z-10 text-center px-8 max-w-5xl mx-auto text-white space-y-12">
+        <div className="relative z-10 text-center px-6 md:px-8 max-w-6xl mx-auto text-white space-y-8">
           
-          {/* Event Label (small, top) */}
-          <p className="text-sm md:text-base font-semibold uppercase tracking-[0.3em] text-white/80">
-            INNOTHON 2026
-          </p>
+          {/* Event Header */}
+          <div className="space-y-2">
+            <p className="text-lg md:text-xl font-bold uppercase tracking-[0.25em] text-blue-400">
+              National Level Inter Collegiate Management, IT, Aviation & Cultural Fest
+            </p>
+            <p className="text-2xl md:text-4xl font-black uppercase tracking-wide text-orange-400">
+              INNOTHON - 2026
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-3 py-4">
+            <div className="h-[2px] w-16 bg-green-400"></div>
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+            <div className="h-[2px] w-16 bg-green-400"></div>
+          </div>
           
           {/* Project Title (large, centered) */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
             Kokkare Bellur:<br />
-            A Sanctuary Without Fences
+            <span className="text-green-400">A Sanctuary Without Fences</span>
           </h1>
+
+          {/* Theme */}
+          <div className="bg-black/40 backdrop-blur-sm py-4 px-6 rounded-xl border border-yellow-500/30 max-w-4xl mx-auto">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-wider text-yellow-400 mb-2">Theme</p>
+            <p className="text-base md:text-xl font-medium text-white">
+              AI-Driven Innovation for Social Impact and Sustainable Development
+            </p>
+          </div>
           
           {/* Presenters (medium weight) */}
-          <p className="text-xl md:text-2xl font-semibold text-white pt-8">
-            KIRAN & VIDYASHREE C
-          </p>
+          <div className="pt-6">
+            <p className="text-2xl md:text-3xl font-bold text-green-300 tracking-wide">
+              KIRAN & VIDYASHREE C
+            </p>
+          </div>
           
-          {/* Institution (lighter, smaller) */}
-          <div className="text-base md:text-lg font-normal text-white/90 leading-relaxed">
-            <p>Maharajas Institute of Technology</p>
-            <p>Faculty of Graduate Studies, Mysore</p>
+          {/* Institution */}
+          <div className="text-base md:text-lg font-medium text-white leading-relaxed">
+            <p className="font-semibold">Maharajas Institute of Technology</p>
+            <p className="text-white/90">First Grade College, Mysore</p>
+          </div>
+
+          {/* Event Details */}
+          <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-3xl mx-auto">
+            <div className="bg-black/30 backdrop-blur-sm py-3 px-4 rounded-lg border border-white/20">
+              <p className="text-xs uppercase tracking-wider text-blue-300 mb-1">Date</p>
+              <p className="text-lg font-bold text-white">6th March 2026</p>
+            </div>
+            <div className="bg-black/30 backdrop-blur-sm py-3 px-4 rounded-lg border border-white/20">
+              <p className="text-xs uppercase tracking-wider text-blue-300 mb-1">Time</p>
+              <p className="text-lg font-bold text-white">8:00 AM</p>
+            </div>
+            <div className="bg-black/30 backdrop-blur-sm py-3 px-4 rounded-lg border border-white/20">
+              <p className="text-xs uppercase tracking-wider text-blue-300 mb-1">Venue</p>
+              <p className="text-lg font-bold text-white">Hindustan College</p>
+            </div>
           </div>
         </div>
 
