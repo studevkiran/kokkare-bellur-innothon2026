@@ -22,12 +22,14 @@ Kokkare Bellur, a unique wetland village in Karnataka where humans and migratory
 A comprehensive digital platform combining **AI-Driven Innovation** with **Blockchain Technology**:
 
 1. **AI Bird Identification:** TensorFlow.js-powered species recognition with 85%+ accuracy
-2. **Blockchain Token Rewards:** CampusCoin integration to incentivize conservation actions
+2. **Blockchain Token Rewards:** Integration with existing CampusCoin platform ([Visit Here](https://campus-coin-kohl.vercel.app/))
 3. **Community Engagement:** Interactive pledge system for citizen support
 4. **Data Transparency:** Real-time public registry via Google Sheets integration
 5. **Education:** Rich multimedia content about conservation
 6. **Token Economy:** Tangible rewards for conservation participation (10-200 tokens per action)
 7. **Automated Verification:** AI validates bird sightings, reducing manual oversight
+
+**⚡ Key Innovation:** We integrate with the **existing CampusCoin blockchain platform** - all token claiming, wallet management, and rewards happen there. Our platform acts as a verification gateway for conservation actions.
 
 ### Innovation Highlights 🚀
 - **AI-Powered Species Recognition:** Users upload bird photos → AI identifies species → Confidence scoring

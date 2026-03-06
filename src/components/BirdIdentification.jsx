@@ -87,15 +87,15 @@ const BirdIdentification = () => {
           message: data.message
         });
 
-        // Simulate approval process (in production, admin would approve via dashboard)
+        // Simulate approval process
         setTimeout(() => {
           setTokenRequest({
             id: data.requestId,
             status: 'approved',
             tokens: result.tokens,
-            message: `Congratulations! ${result.tokens} tokens have been allocated to your wallet.`
+            message: `Request submitted! Visit CampusCoin to claim your ${result.tokens} tokens.`
           });
-        }, 3000);
+        }, 2000);
       } else {
         setTokenRequest({
           id: '',
@@ -250,15 +250,16 @@ const BirdIdentification = () => {
 
             {tokenRequest.status === 'approved' && (
               <div className="mt-4 pt-4 border-t border-green-200">
-                <p className="text-sm text-stone-600 mb-2">View your tokens:</p>
+                <p className="text-sm text-stone-600 mb-2">🎉 Your {result.tokens} tokens are ready to claim!</p>
                 <a 
                   href="https://campus-coin-kohl.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-bold text-lg shadow-lg"
                 >
-                  Open Wallet →
+                  🪙 Go to CampusCoin Platform →
                 </a>
+                <p className="text-xs text-stone-500 mt-2">All token claiming happens on the CampusCoin blockchain platform</p>
               </div>
             )}
           </div>
@@ -273,9 +274,10 @@ const BirdIdentification = () => {
           <ul className="space-y-2 text-sm text-blue-800">
             <li>• Upload a clear photo of birds at Kokkare Bellur</li>
             <li>• AI identifies the species using TensorFlow.js</li>
-            <li>• Request is sent to Conservation Authority for verification</li>
-            <li>• Tokens are minted on blockchain and allocated to your wallet</li>
-            <li>• Redeem tokens for eco-tourism rewards and local products</li>
+            <li>• Request is verified and submitted to CampusCoin blockchain</li>
+            <li>• <strong>Click the link to visit CampusCoin platform</strong></li>
+            <li>• All token claiming, wallet management & rewards are on CampusCoin</li>
+            <li>• Redeem tokens for eco-tourism and conservation rewards</li>
           </ul>
         </div>
       </div>

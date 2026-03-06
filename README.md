@@ -53,7 +53,19 @@ The app will run on:
 - **CampusCoin API** - Token allocation system
 - **Confidence Scoring** - Auto-approval for >85% accuracy
 
-## 🎯 How It Works
+## � Blockchain Integration
+
+### CampusCoin Platform
+
+**⚡ Important:** The blockchain token system already exists!
+
+- **Platform:** [https://campus-coin-kohl.vercel.app/](https://campus-coin-kohl.vercel.app/)
+- **What's there:** Wallet management, token claiming, balance tracking, rewards redemption
+- **How it works:** Users complete conservation actions → Get verification → Click link → Visit CampusCoin → Claim tokens
+
+Our conservation platform acts as a **verification gateway** - we validate the conservation actions (bird photos, pledges, etc.), then direct users to the existing CampusCoin platform where all blockchain functionality lives.
+
+### Integration Flow
 
 ### AI Bird Identification Flow
 
