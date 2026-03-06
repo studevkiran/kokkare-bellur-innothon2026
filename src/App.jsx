@@ -500,9 +500,10 @@ function App() {
           <p className="text-xl text-stone-600">These solutions are practical, proven, and achievable.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-20">
-          <div className="space-y-10">
-            <h3 className="text-3xl font-bold flex items-center gap-3 text-stone-800 pb-4 border-b border-stone-200">
+        <div className="max-w-5xl mx-auto space-y-12">
+          {/* Our Solution */}
+          <div>
+            <h3 className="text-3xl font-bold flex items-center gap-3 text-stone-800 pb-4 border-b border-stone-200 mb-8">
               <Leaf className="text-green-600" /> Our Solution: EcoStork Token System
             </h3>
             <div className="space-y-8">
@@ -539,83 +540,108 @@ function App() {
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Technology Stack */}
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-200">
-              <h4 className="text-2xl font-bold mb-6 text-stone-900 flex items-center gap-2">
-                <span className="text-blue-600">⚙️</span> Technology Stack
-              </h4>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <p className="font-bold text-stone-800 mb-1">Frontend</p>
-                  <p className="text-stone-600">React 19 + Vite + Tailwind CSS</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <p className="font-bold text-stone-800 mb-1">Backend</p>
-                  <p className="text-stone-600">Express.js + SQLite3</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <p className="font-bold text-stone-800 mb-1">Blockchain</p>
-                  <p className="text-stone-600">Custom PoW + SHA-256</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <p className="font-bold text-stone-800 mb-1">AI/ML</p>
-                  <p className="text-stone-600">Computer Vision (Planned)</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <p className="font-bold text-stone-800 mb-1">Deployment</p>
-                  <p className="text-stone-600">Vercel (CI/CD)</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <p className="font-bold text-stone-800 mb-1">Integration</p>
-                  <p className="text-stone-600">CampusCoin Platform</p>
-                </div>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center py-8">
+            <a 
+              href="#pledge" 
+              className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-center"
+            >
+              <div className="flex items-center justify-center gap-3">
+                <Heart className="group-hover:scale-110 transition-transform" size={24} />
+                <span>Support Kokkare Bellur</span>
+              </div>
+              <p className="text-sm font-normal mt-1 opacity-90">Sign the citizen petition</p>
+            </a>
+            
+            <a 
+              href="https://campus-coin-kohl.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-center"
+            >
+              <div className="flex items-center justify-center gap-3">
+                <Activity className="group-hover:scale-110 transition-transform" size={24} />
+                <span>Access CampusCoin Platform</span>
+              </div>
+              <p className="text-sm font-normal mt-1 opacity-90">Blockchain token system</p>
+            </a>
+          </div>
+
+          {/* Technology Stack */}
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-10 rounded-3xl border border-blue-200">
+            <h4 className="text-3xl font-bold mb-8 text-stone-900 flex items-center gap-3 pb-4 border-b border-blue-300">
+              <span className="text-blue-600">⚙️</span> Technology Stack
+            </h4>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <p className="font-bold text-stone-800 mb-2 text-lg">Frontend</p>
+                <p className="text-stone-600">React 19 + Vite + Tailwind CSS</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <p className="font-bold text-stone-800 mb-2 text-lg">Backend</p>
+                <p className="text-stone-600">Express.js + SQLite3</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <p className="font-bold text-stone-800 mb-2 text-lg">Blockchain</p>
+                <p className="text-stone-600">Custom PoW + SHA-256</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <p className="font-bold text-stone-800 mb-2 text-lg">AI/ML</p>
+                <p className="text-stone-600">Computer Vision (Planned)</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <p className="font-bold text-stone-800 mb-2 text-lg">Deployment</p>
+                <p className="text-stone-600">Vercel (CI/CD)</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <p className="font-bold text-stone-800 mb-2 text-lg">Integration</p>
+                <p className="text-stone-600">CampusCoin Platform</p>
               </div>
             </div>
           </div>
 
-          <div className="space-y-8">
-            {/* Advantages */}
-            <div className="bg-green-50 p-10 rounded-3xl border border-green-200">
-              <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-stone-800 pb-4 border-b border-green-300">
-                <span className="text-green-600">✓</span> Advantages
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { title: "Transparency", text: "Immutable blockchain records prevent fraud and build trust in conservation efforts." },
-                  { title: "Direct Incentivization", text: "Immediate token rewards motivate continuous community participation beyond one-time campaigns." },
-                  { title: "Economic Empowerment", text: "Village-only redemption keeps money local, preventing external economic extraction." },
-                  { title: "Scalable Model", text: "System adaptable to any threatened ecosystem - tiger reserves, mangroves, turtle beaches." },
-                  { title: "Data for Policy", text: "Conservation activity logs provide evidence-based insights for forest departments and researchers." },
-                  { title: "Youth Engagement", text: "Gamification through blockchain makes conservation appealing to younger generations." }
-                ].map((adv, i) => (
-                  <div key={i} className="bg-white p-5 rounded-xl shadow-sm">
-                    <h4 className="font-bold text-lg text-green-900 mb-2">{adv.title}</h4>
-                    <p className="text-stone-600 text-sm leading-relaxed">{adv.text}</p>
-                  </div>
-                ))}
-              </div>
+          {/* Advantages */}
+          <div className="bg-green-50 p-10 rounded-3xl border border-green-200">
+            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-stone-800 pb-4 border-b border-green-300">
+              <span className="text-green-600">✓</span> Advantages
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { title: "Transparency", text: "Immutable blockchain records prevent fraud and build trust in conservation efforts." },
+                { title: "Direct Incentivization", text: "Immediate token rewards motivate continuous community participation beyond one-time campaigns." },
+                { title: "Economic Empowerment", text: "Village-only redemption keeps money local, preventing external economic extraction." },
+                { title: "Scalable Model", text: "System adaptable to any threatened ecosystem - tiger reserves, mangroves, turtle beaches." },
+                { title: "Data for Policy", text: "Conservation activity logs provide evidence-based insights for forest departments and researchers." },
+                { title: "Youth Engagement", text: "Gamification through blockchain makes conservation appealing to younger generations." }
+              ].map((adv, i) => (
+                <div key={i} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                  <h4 className="font-bold text-lg text-green-900 mb-2">{adv.title}</h4>
+                  <p className="text-stone-600 leading-relaxed">{adv.text}</p>
+                </div>
+              ))}
             </div>
+          </div>
 
-            {/* Challenges */}
-            <div className="bg-orange-50 p-10 rounded-3xl border border-orange-200">
-              <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-stone-800 pb-4 border-b border-orange-300">
-                <AlertTriangle className="text-orange-600" /> Challenges & Limitations
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { title: "Rural Internet Connectivity", text: "Limited 4G/WiFi in villages requires offline-first design and WhatsApp-based fallbacks." },
-                  { title: "Photo Verification Complexity", text: "AI models need extensive training to detect fake/reused images. Currently relies on human review." },
-                  { title: "Initial Token Distribution", text: "Requires funding source for token backing (₹50 per 100 tokens) - NGO/govt grants needed." },
-                  { title: "Digital Literacy Gap", text: "Elderly villagers may struggle with apps - training and simplified UX critical for adoption." },
-                  { title: "Store Participation", text: "Village stores must trust token-to-rupee conversion process and accept new payment method." }
-                ].map((challenge, i) => (
-                  <div key={i} className="bg-white p-5 rounded-xl shadow-sm">
-                    <h4 className="font-bold text-lg text-orange-900 mb-2">{challenge.title}</h4>
-                    <p className="text-stone-600 text-sm leading-relaxed">{challenge.text}</p>
-                  </div>
-                ))}
-              </div>
+          {/* Challenges */}
+          <div className="bg-orange-50 p-10 rounded-3xl border border-orange-200">
+            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-stone-800 pb-4 border-b border-orange-300">
+              <AlertTriangle className="text-orange-600" /> Challenges & Limitations
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { title: "Rural Internet Connectivity", text: "Limited 4G/WiFi in villages requires offline-first design and WhatsApp-based fallbacks." },
+                { title: "Photo Verification Complexity", text: "AI models need extensive training to detect fake/reused images. Currently relies on human review." },
+                { title: "Initial Token Distribution", text: "Requires funding source for token backing (₹50 per 100 tokens) - NGO/govt grants needed." },
+                { title: "Digital Literacy Gap", text: "Elderly villagers may struggle with apps - training and simplified UX critical for adoption." },
+                { title: "Store Participation", text: "Village stores must trust token-to-rupee conversion process and accept new payment method." }
+              ].map((challenge, i) => (
+                <div key={i} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                  <h4 className="font-bold text-lg text-orange-900 mb-2">{challenge.title}</h4>
+                  <p className="text-stone-600 leading-relaxed">{challenge.text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -662,11 +688,6 @@ function App() {
             <Globe size={16} /> Data synced to Public Registry (Google Sheets)
           </div>
         </div>
-      </section>
-
-      {/* 🟢 EDUCATION-BASED CONSERVATION ACTIONS & BLOCKCHAIN REWARDS */}
-      <section className="py-24 px-6 bg-gradient-to-br from-cyan-50 via-green-50 to-blue-50" id="conservation-actions">
-        <ConservationActions />
       </section>
 
       {/* 🟢 CALL TO ACTION & FOOTER */}
