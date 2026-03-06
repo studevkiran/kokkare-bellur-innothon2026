@@ -1,25 +1,53 @@
-# 🦜 Kokkare Bellur Conservation Platform
+# 🦜 Kokkare Bellur Conservation Education Platform
 
-> **AI-Driven Innovation for Wetland Conservation** | Built for INNOTHON 2026
+> **Education for Sustainable Development** | Built for INNOTHON 2026
 
 [![Demo](https://img.shields.io/badge/Demo-Live-green)](https://github.com/studevkiran/kokkare-bellur-innothon2026)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
-[![Conservation](https://img.shields.io/badge/Impact-Environmental-brightgreen)](https://kokkare-bellur.org)
+[![Education](https://img.shields.io/badge/Focus-Education-brightgreen)](https://kokkare-bellur.org)
 
 ## 🌟 Overview
 
-Kokkare Bellur is a unique wetland village in Karnataka, India, where humans and migratory birds have coexisted peacefully for generations. This platform combines **AI-powered bird identification** with **blockchain token rewards** to create the first-of-its-kind conservation incentive ecosystem.
+Learn conservation by doing it! This platform combines **education-first approach** with **blockchain token rewards** to create sustainable behavioral change. Three role-based learning paths (Community, Tourists, Students) with village-only token economy.
 
 ### Key Features
 
-- 🤖 **AI Bird Identification** - TensorFlow.js-powered species recognition
-- 🪙 **Blockchain Rewards** - Earn CampusCoin tokens for conservation actions
-- 📝 **Digital Petition** - Public pledge registry for wetland protection
-- 🎨 **Rich Media** - Educational content with images and video
-- 📊 **Transparent Data** - Google Sheets integration for public accountability
-- 🔗 **API Integration** - Seamless connection with CampusCoin blockchain
+- 🎓 **Role-Based Learning** - 12 conservation actions across 3 user types
+- 🪙 **Village Token Economy** - Earn tokens redeemable only at local stores
+- 📝 **Education Hub** - Learning modules, workshops, research repository
+- 🎮 **Gamification** - Leaderboards, badges, certificates, team challenges
+- 📊 **Impact Tracking** - Personal dashboards, community metrics
+- 🔗 **Blockchain Partnership** - Integration with existing CampusCoin platform
 
-## 🚀 Quick Start
+## 🎯 Role-Based Conservation Education
+
+### Local Community Members
+Learn traditional conservation practices, earn tokens for:
+- **Bird Treatment & Care** - 200 tokens
+- **Nesting Tree Protection** - 150 tokens  
+- **Wetland Monitoring** - 100 tokens
+- **Knowledge Documentation** - 150 tokens
+
+### Tourists & Visitors
+Learn responsible tourism, earn tokens for:
+- **Trash Collection** - 100 tokens
+- **Plastic-Free Pledge** - 50 tokens
+- **Eco-Tourism Reviews** - 80 tokens
+
+### Students & Youth
+Learn through action and research, earn tokens for:
+- **Lake Cleaning Programs** - 200 tokens
+- **Awareness Campaigns** - 150 tokens
+- **School Workshops** - 180 tokens
+- **Research Documentation** - 200 tokens
+- **Volunteer Hours** - 30 tokens/hour
+
+## 🪙 Village Token Economy
+
+**Conversion:** 100 tokens = ₹50 value  
+**Redemption:** ONLY at Kokkare Bellur village stores  
+**Stores:** Groceries, handicrafts, eco-tours, farm products  
+**Impact:** Economic benefit stays in community
 
 ```bash
 # Install dependencies
@@ -67,25 +95,21 @@ Our conservation platform acts as a **verification gateway** - we validate the c
 
 ### Integration Flow
 
-### AI Bird Identification Flow
+1. **User selects role** (Community/Tourist/Student)
+2. **Chooses conservation action** from role-specific menu
+3. **Completes task in real world** (cleanup, treatment, workshop, etc.)
+4. **Uploads proof photos** with GPS location and description
+5. **Request submitted** to conservation platform API
+6. **Admin verifies** on CampusCoin platform
+7. **Tokens allocated** via blockchain
+8. **User redeems** at village stores only
 
-1. **User uploads bird photo** → Image displayed in browser
-2. **AI analyzes image** → TensorFlow.js MobileNet classification
-3. **Confidence scoring** → System calculates reliability (0-100%)
-4. **Token estimation** → Based on species rarity and confidence
-5. **Request submission** → Sent to blockchain API for approval
-6. **Admin verification** → Manual review for <85% confidence
-7. **Token allocation** → CampusCoin mints and transfers tokens
-8. **User notification** → Success message with wallet link
-
-### Token Reward Structure
-
-| Action | Tokens | Verification |
-|--------|--------|--------------|
-| Pledge Support | 10 | Automatic |
-| Bird Photo Upload | 50-100 | AI + Manual |
-| Community Cleanup | 150 | GPS + Photo |
-| Tree Planting | 200 | GPS + Photo |
+### Smart Verification
+- Photo proof required for all actions
+- GPS location verification for field tasks
+- Admin approval on CampusCoin dashboard
+- Blockchain immutability prevents fraud
+- Educational content ensures proper task completion
 
 ## 🔌 API Endpoints
 
@@ -125,34 +149,37 @@ POST /api/pledge
 GET /api/pledges/csv
 ```
 
-## 🌍 Social Impact
+## 🌍 Educational & Social Impact
 
-### Environmental Goals
-- ✅ Increase awareness about wetland conservation
-- ✅ Build public pressure for policy intervention
-- ✅ Document bird species population trends
-- ✅ Engage youth in environmental causes
+### Learning Goals
+- ✅ Wetland ecology education through hands-on participation
+- ✅ Student engagement in environmental research
+- ✅ Preserve traditional conservation knowledge digitally
+- ✅ Responsible tourism education
+- ✅ Intergenerational learning exchange
 
 ### Economic Innovation
-- 💰 Create tangible incentives for conservation
-- 🪙 Blockchain-verified contribution records
-- 🎁 Redeemable tokens for eco-tourism and local products
-- 📈 Gamification increases long-term engagement
+- 💰 Village-only token economy keeps money in community
+- 🪙 Blockchain-verified educational participation
+- 🎁 Students learn while earning (30-200 tokens per action)
+- 📈 Gamification increases long-term educational engagement
 
 ## 🏆 INNOTHON 2026 Submission
 
-**Theme:** AI-Driven Innovation for Social Impact and Sustainable Development
+**Theme:** Education for Sustainable Development (AI-Driven Innovation)
 
 ### How We Meet the Theme
-✅ **AI Component:** TensorFlow.js for real-time bird species identification  
-✅ **Innovation:** First conservation platform with blockchain token incentives  
-✅ **Social Impact:** Directly addresses environmental degradation  
-✅ **Sustainable Development:** Economic rewards for ecological preservation
+✅ **Education Focus:** Role-based learning paths with hands-on conservation  
+✅ **Innovation:** First blockchain-based conservation education incentive system  
+✅ **Social Impact:** Economic rewards drive behavioral change through education  
+✅ **Sustainable Development:** Education → Action → Rewards → Habit Formation  
+✅ **Scalability:** Model replicable for schools, colleges, communities nationwide
 
 ### Team
 - **Team Size:** 2 members
 - **Development Time:** 6 hours (March 6, 2026)
-- **Tech Used:** React, Express, TensorFlow.js, SQLite, Blockchain API
+- **Tech Used:** React, Express, SQLite, CampusCoin Blockchain API
+- **Focus:** Education-first conservation with village token economy
 
 ## 📝 Documentation
 

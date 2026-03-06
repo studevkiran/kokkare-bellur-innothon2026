@@ -20,7 +20,7 @@ import pelicanImg from './assets/pelican_gen.png';
 import villageImg from './assets/village_birds_gen.png';
 
 import { useState } from 'react';
-import BirdIdentification from './components/BirdIdentification';
+import ConservationActions from './components/ConservationActions';
 
 function PledgeForm() {
   const [formData, setFormData] = useState({
@@ -556,9 +556,9 @@ function App() {
         </div>
       </section>
 
-      {/* 🟢 AI BIRD IDENTIFICATION & BLOCKCHAIN REWARDS */}
-      <section className="py-24 px-6 bg-gradient-to-br from-cyan-50 via-green-50 to-blue-50" id="ai-rewards">
-        <BirdIdentification />
+      {/* 🟢 EDUCATION-BASED CONSERVATION ACTIONS & BLOCKCHAIN REWARDS */}
+      <section className="py-24 px-6 bg-gradient-to-br from-cyan-50 via-green-50 to-blue-50" id="conservation-actions">
+        <ConservationActions />
       </section>
 
       {/* 🟢 CALL TO ACTION & FOOTER */}

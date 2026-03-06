@@ -35,16 +35,18 @@ const db = new sqlite3.Database(dbPath, (err) => {
       consent BOOLEAN NOT NULL
     )`);
         
-        // Token requests table
-        db.run(`CREATE TABLE IF NOT EXISTS token_requests (
+        // Conservation actions table
+        db.run(`CREATE TABLE IF NOT EXISTS conservation_actions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       request_id TEXT UNIQUE NOT NULL,
       timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
       user_name TEXT,
+      role TEXT NOT NULL,
       action_type TEXT NOT NULL,
-      bird_species TEXT,
-      confidence REAL,
+      action_name TEXT,
       location TEXT,
+      description TEXT,
+      proof_count INTEGER,
       tokens_requested INTEGER NOT NULL,
       status TEXT DEFAULT 'pending',
       admin_notes TEXT,
@@ -125,50 +127,51 @@ app.get('/api/pledges', (req, res) => {
 
 // === BLOCKCHAIN INTEGRATION ENDPOINTS ===
 
-// POST: Request conservation tokens
-app.post('/api/conservation/request-token', (req, res) => {
+// POST: Submit conservation action
+app.post('/api/conservation/submit-action', (req, res) => {
     const { 
+        requestId,
         userName, 
-        actionType, 
-        birdSpecies, 
-        confidence, 
-        location, 
-        tokensRequested 
+        role,
+        actionType,
+        actionName,
+        location,
+        description,
+        tokensRequested,
+        proofCount
     } = req.body;
 
-    if (!actionType || !tokensRequested) {
+    if (!role || !actionType || !tokensRequested) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
-
-    const requestId = `REQ-KB-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
-    const sql = `INSERT INTO token_requests 
-        (request_id, user_name, action_type, bird_species, confidence, location, tokens_requested, status) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')`;
+    const sql = `INSERT INTO conservation_actions 
+        (request_id, user_name, role, action_type, action_name, location, description, proof_count, tokens_requested, status) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')`;
     
-    const params = [requestId, userName, actionType, birdSpecies, confidence, location, tokensRequested];
+    const params = [requestId, userName, role, actionType, actionName, location, description, proofCount, tokensRequested];
 
     db.run(sql, params, function (err) {
         if (err) {
-            console.error('Token request error:', err.message);
+            console.error('Conservation action submission error:', err.message);
             return res.status(400).json({ error: err.message });
         }
         
-        // In production, this would trigger notification to blockchain admin
-        console.log(`✅ Token request created: ${requestId}`);
-        console.log(`   Action: ${actionType}, Species: ${birdSpecies}, Tokens: ${tokensRequested}`);
+        // In production, this would trigger notification to CampusCoin admin
+        console.log(`✅ Conservation action submitted: ${requestId}`);
+        console.log(`   Role: ${role}, Action: ${actionName}, Tokens: ${tokensRequested}`);
         
         res.json({
             success: true,
             requestId: requestId,
-            message: 'Token request submitted to Conservation Authority',
+            message: 'Action submitted! Admin will verify on CampusCoin platform.',
             status: 'pending',
             estimatedTokens: tokensRequested
         });
     });
 });
 
-// POST: Webhook for token allocation confirmation (called by blockchain admin)
+// POST: Webhook for token allocation confirmation (called by CampusCoin admin)
 app.post('/api/token-allocated', (req, res) => {
     const { requestId, status, adminNotes } = req.body;
 
@@ -176,7 +179,7 @@ app.post('/api/token-allocated', (req, res) => {
         return res.status(400).json({ error: 'Missing requestId' });
     }
 
-    const sql = `UPDATE token_requests 
+    const sql = `UPDATE conservation_actions 
         SET status = ?, admin_notes = ?, allocated_at = CURRENT_TIMESTAMP 
         WHERE request_id = ?`;
     
@@ -202,16 +205,27 @@ app.post('/api/token-allocated', (req, res) => {
     });
 });
 
-// GET: Get token requests (for admin dashboard)
-app.get('/api/token-requests', (req, res) => {
+// GET: Get conservation actions (for admin dashboard)
+app.get('/api/conservation/actions', (req, res) => {
     const status = req.query.status; // optional filter: pending, approved, rejected
+    const role = req.query.role; // optional filter: community, tourist, student
     
-    let sql = `SELECT * FROM token_requests`;
+    let sql = `SELECT * FROM conservation_actions`;
     let params = [];
+    let conditions = [];
     
     if (status) {
-        sql += ` WHERE status = ?`;
+        conditions.push('status = ?');
         params.push(status);
+    }
+    
+    if (role) {
+        conditions.push('role = ?');
+        params.push(role);
+    }
+    
+    if (conditions.length > 0) {
+        sql += ' WHERE ' + conditions.join(' AND ');
     }
     
     sql += ` ORDER BY timestamp DESC LIMIT 100`;
@@ -224,16 +238,16 @@ app.get('/api/token-requests', (req, res) => {
         res.json({
             success: true,
             count: rows.length,
-            requests: rows
+            actions: rows
         });
     });
 });
 
-// GET: Get single token request status
-app.get('/api/token-requests/:requestId', (req, res) => {
+// GET: Get single conservation action status
+app.get('/api/conservation/actions/:requestId', (req, res) => {
     const { requestId } = req.params;
     
-    const sql = `SELECT * FROM token_requests WHERE request_id = ?`;
+    const sql = `SELECT * FROM conservation_actions WHERE request_id = ?`;
 
     db.get(sql, [requestId], (err, row) => {
         if (err) {
@@ -246,7 +260,7 @@ app.get('/api/token-requests/:requestId', (req, res) => {
         
         res.json({
             success: true,
-            request: row
+            action: row
         });
     });
 });
