@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import {
   MapPin,
   Bird,
@@ -17,182 +18,9 @@ import {
 
 import { useState } from 'react';
 import ConservationActions from './components/ConservationActions';
+import PetitionPage from './pages/PetitionPage';
 
-function PledgeForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    village: '',
-    district: '',
-    phone: '',
-    email: '',
-    message: '',
-    consent: false
-  });
-  const [status, setStatus] = useState('idle'); // idle, submitting, success, error
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('submitting');
-
-    // Google Apps Script Web App URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwwzVb-vOfYCG173dIJUjkDP6HDzAY08xum6NMttX0eHCPZn4piy__vGEPgmopZBl8/exec';
-
-    try {
-      // Create FormData from the form element
-      const formBody = new FormData();
-      Object.keys(formData).forEach(key => {
-        formBody.append(key, formData[key]);
-      });
-
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        body: formBody,
-        // mode: 'no-cors' // Optional: use if CORS errors persist, but prevents reading response
-      });
-
-      // With Google Apps Script, we might validly get a response if the access controls are right.
-      // If using 'no-cors', response.ok will be false/opaque.
-      // We'll assume success if it doesn't throw, or check response if possible.
-
-      if (response.ok || response.type === 'opaque') {
-        setStatus('success');
-        setFormData({ name: '', village: '', district: '', phone: '', email: '', message: '', consent: false });
-      } else {
-        setStatus('error');
-        console.error('Submission failed');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setStatus('error');
-    }
-  };
-
-  if (status === 'success') {
-    return (
-      <div className="text-center py-10 bg-green-50 rounded-xl border border-green-200">
-        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-          <ShieldCheck size={32} />
-        </div>
-        <h3 className="text-2xl font-bold text-green-800 mb-2">Thank You!</h3>
-        <p className="text-green-700">Your support has been recorded for the petition.</p>
-        <button onClick={() => setStatus('idle')} className="mt-6 text-green-700 underline font-medium">Add another supporter</button>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="block text-sm font-bold text-stone-700 mb-1">Full Name <span className="text-red-500">*</span></label>
-        <input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="e.g. Ravi Kumar"
-          required
-          className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-        />
-      </div>
-
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-bold text-stone-700 mb-1">Village / Town <span className="text-red-500">*</span></label>
-          <input
-            name="village"
-            value={formData.village}
-            onChange={handleChange}
-            placeholder="e.g. Kokkare Bellur"
-            required
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-bold text-stone-700 mb-1">District <span className="text-red-500">*</span></label>
-          <input
-            name="district"
-            value={formData.district}
-            onChange={handleChange}
-            placeholder="e.g. Mandya"
-            required
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-bold text-stone-700 mb-1">Phone</label>
-          <input
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="Optional"
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-bold text-stone-700 mb-1">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Optional"
-            className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-bold text-stone-700 mb-1">Message of Support</label>
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Why do you support the protection of this wetland? (Optional)"
-          rows="3"
-          className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all resize-none"
-        />
-      </div>
-
-      <label className="flex items-start gap-3 p-4 bg-stone-50 rounded-lg border border-stone-200 cursor-pointer hover:bg-stone-100 transition-colors">
-        <input
-          type="checkbox"
-          name="consent"
-          checked={formData.consent}
-          onChange={handleChange}
-          required
-          className="mt-1 w-5 h-5 text-orange-600 rounded focus:ring-orange-500 border-gray-300"
-        />
-        <span className="text-sm text-stone-600">
-          I agree that my name and locality may be submitted to government authorities as part of this citizen petition to protect Kokkare Bellur.
-        </span>
-      </label>
-
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        className="w-full bg-orange-600 text-white font-bold py-4 rounded-xl hover:bg-orange-700 transition-colors shadow-lg hover:shadow-xl active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed"
-      >
-        {status === 'submitting' ? 'Submitting...' : 'Add My Support'}
-      </button>
-
-      {status === 'error' && (
-        <p className="text-red-500 text-center text-sm">Something went wrong. Please try again.</p>
-      )}
-    </form>
-  );
-}
-
-function App() {
+function HomePage() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-stone-900 overflow-x-hidden">
 
@@ -544,8 +372,8 @@ function App() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center py-8">
-            <a 
-              href="#pledge" 
+            <Link 
+              to="/petition" 
               className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-center"
             >
               <div className="flex items-center justify-center gap-3">
@@ -553,7 +381,7 @@ function App() {
                 <span>Support Kokkare Bellur</span>
               </div>
               <p className="text-sm font-normal mt-1 opacity-90">Sign the citizen petition</p>
-            </a>
+            </Link>
             
             <a 
               href="https://campus-coin-kohl.vercel.app/" 
@@ -647,49 +475,6 @@ function App() {
         </div>
       </section>
 
-      {/* 🟢 PUBLIC PLEDGE REGISTRY */}
-      <section className="py-24 bg-stone-100 border-y border-stone-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-10 flex items-center gap-3 text-stone-900 border-b border-stone-300 pb-4">
-            <span className="bg-stone-800 text-white p-2 rounded-lg"><Globe size={24} /></span> Public Pledge Registry
-          </h2>
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-stone-200 h-[600px]">
-            <iframe
-              src="https://docs.google.com/spreadsheets/d/1n1xjK6ahu06wmNV4xpRddi8OSGumQpuERQhfYKg6-Us/preview?usp=sharing"
-              className="w-full h-full border-0"
-              title="Public Pledge Registry"
-            ></iframe>
-          </div>
-          <div className="mt-4 text-center">
-            <a href="https://docs.google.com/spreadsheets/d/1n1xjK6ahu06wmNV4xpRddi8OSGumQpuERQhfYKg6-Us/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-stone-500 hover:text-stone-800 text-sm font-medium inline-flex items-center gap-1 transition-colors">
-              View Full Sheet <ArrowRight size={14} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 🟢 PLEDGE SECTION */}
-      <section className="py-24 px-6 max-w-3xl mx-auto" id="pledge">
-        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border-t-8 border-orange-500">
-          <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold mb-4 text-stone-900">Support Kokkare Bellur</h2>
-            <p className="text-lg text-stone-600">
-              Add your name to this citizen petition calling for wetland and nesting‑tree protection.
-            </p>
-          </div>
-
-          <PledgeForm />
-
-        </div>
-
-        <div className="mt-12 text-center">
-          <p className="text-stone-500 mb-4 text-sm">Transparent Advocacy</p>
-          <div className="inline-flex items-center gap-2 text-stone-600 border border-stone-300 px-4 py-2 rounded-full text-sm font-medium bg-stone-50 cursor-default">
-            <Globe size={16} /> Data synced to Public Registry (Google Sheets)
-          </div>
-        </div>
-      </section>
-
       {/* 🟢 CALL TO ACTION & FOOTER */}
       <section className="bg-gradient-to-b from-stone-900 to-black text-stone-300 py-32 px-6 text-center">
         <div className="max-w-5xl mx-auto">
@@ -744,6 +529,15 @@ function App() {
         <p className="text-xs">&copy; {new Date().getFullYear()} All Rights Reserved.</p>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/petition" element={<PetitionPage />} />
+    </Routes>
   );
 }
 
