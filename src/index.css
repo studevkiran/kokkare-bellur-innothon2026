@@ -3,11 +3,23 @@
 /* Smooth Scroll Behavior */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Scroll Snap for Presentation Style */
 body {
   overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent horizontal overflow on all containers */
+* {
+  max-width: 100%;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Custom Animations */

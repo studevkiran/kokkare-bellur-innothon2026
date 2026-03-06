@@ -197,106 +197,93 @@ function PledgeForm() {
 
 function App() {
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-stone-900">
+    <div className="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-stone-900 overflow-x-hidden">
 
       {/* 🟢 HERO SECTION - Presentation Title Slide */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            webkit-playsinline="true"
-            x5-video-player-type="h5"
-            x5-video-player-fullscreen="true"
-            x-webkit-airplay="allow"
-            preload="auto"
-            className="w-full h-full object-cover"
-            ref={(video) => {
-              if (video) {
-                video.play().catch((error) => {
-                  console.log("Video autoplay failed:", error);
-                  // Try playing on user interaction
-                  document.addEventListener('click', () => video.play(), { once: true });
-                });
-              }
-            }}
-          >
-            <source src="/hero.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          {/* Simple dark overlay */}
-          <div className="absolute inset-0 bg-black/65"></div>
-        </div>
+      <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden w-full">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23000'/%3E%3C/svg%3E"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
 
         {/* Presentation Content - Centered, Formal */}
-        <div className="relative z-10 text-center px-6 md:px-8 max-w-6xl mx-auto text-white space-y-8">
+        <div className="relative z-20 text-center px-4 sm:px-6 md:px-8 max-w-6xl mx-auto text-white space-y-6 md:space-y-8 py-8 w-full">
           
           {/* Event Header */}
-          <div className="space-y-3">
-            <p className="text-lg md:text-xl font-bold uppercase tracking-[0.25em] text-blue-400">
-              National Level Inter Collegiate Management, IT, Aviation & Cultural Fest
+          <div className="space-y-2 md:space-y-3">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg font-bold uppercase tracking-wider md:tracking-[0.2em] text-blue-400 leading-tight px-2">
+              National Level Inter Collegiate<br className="sm:hidden" /> Management, IT, Aviation & Cultural Fest
             </p>
-            <p className="text-2xl md:text-4xl font-black uppercase tracking-wide text-orange-400">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-wide text-orange-400">
               INNOTHON - 2026
             </p>
           </div>
 
           {/* Event Details - Prominent Position */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-3xl mx-auto py-4">
-            <div className="bg-blue-600/80 backdrop-blur-sm py-4 px-6 rounded-xl border-2 border-blue-400/50 shadow-lg">
-              <p className="text-sm uppercase tracking-wider text-blue-200 mb-2 font-semibold">Date</p>
-              <p className="text-xl md:text-2xl font-black text-white">6th March 2026</p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 text-center max-w-3xl mx-auto py-3 md:py-4">
+            <div className="bg-blue-600/80 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 rounded-lg md:rounded-xl border border-blue-400/50 md:border-2 shadow-lg">
+              <p className="text-[10px] sm:text-xs uppercase tracking-wider text-blue-200 mb-1 md:mb-2 font-semibold">Date</p>
+              <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white leading-tight">6th March<br className="sm:hidden" /> 2026</p>
             </div>
-            <div className="bg-blue-600/80 backdrop-blur-sm py-4 px-6 rounded-xl border-2 border-blue-400/50 shadow-lg">
-              <p className="text-sm uppercase tracking-wider text-blue-200 mb-2 font-semibold">Time</p>
-              <p className="text-xl md:text-2xl font-black text-white">8:00 AM</p>
+            <div className="bg-blue-600/80 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 rounded-lg md:rounded-xl border border-blue-400/50 md:border-2 shadow-lg">
+              <p className="text-[10px] sm:text-xs uppercase tracking-wider text-blue-200 mb-1 md:mb-2 font-semibold">Time</p>
+              <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white">8:00 AM</p>
             </div>
-            <div className="bg-blue-600/80 backdrop-blur-sm py-4 px-6 rounded-xl border-2 border-blue-400/50 shadow-lg">
-              <p className="text-sm uppercase tracking-wider text-blue-200 mb-2 font-semibold">Venue</p>
-              <p className="text-xl md:text-2xl font-black text-white">Hindustan College</p>
+            <div className="bg-blue-600/80 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 rounded-lg md:rounded-xl border border-blue-400/50 md:border-2 shadow-lg">
+              <p className="text-[10px] sm:text-xs uppercase tracking-wider text-blue-200 mb-1 md:mb-2 font-semibold">Venue</p>
+              <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white leading-tight">Hindustan<br className="sm:hidden" /> College</p>
             </div>
           </div>
 
           {/* Divider */}
-          <div className="flex items-center justify-center gap-3 py-4">
-            <div className="h-[2px] w-16 bg-green-400"></div>
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <div className="h-[2px] w-16 bg-green-400"></div>
+          <div className="flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4">
+            <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-green-400"></div>
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full"></div>
+            <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-green-400"></div>
           </div>
           
-          {/* Project Title (large, centered) */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+          {/* Project Title */}
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-white px-2">
             Kokkare Bellur:<br />
             <span className="text-green-400">A Sanctuary Without Fences</span>
           </h1>
 
           {/* Theme */}
-          <div className="bg-black/40 backdrop-blur-sm py-4 px-6 rounded-xl border border-yellow-500/30 max-w-4xl mx-auto">
-            <p className="text-xs md:text-sm font-semibold uppercase tracking-wider text-yellow-400 mb-2">Theme</p>
-            <p className="text-base md:text-xl font-medium text-white">
+          <div className="bg-black/40 backdrop-blur-sm py-3 md:py-4 px-4 md:px-6 rounded-lg md:rounded-xl border border-yellow-500/30 max-w-4xl mx-auto">
+            <p className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-wider text-yellow-400 mb-1 md:mb-2">Theme</p>
+            <p className="text-xs sm:text-sm md:text-base lg:text-xl font-medium text-white leading-relaxed">
               AI-Driven Innovation for Social Impact and Sustainable Development
             </p>
           </div>
           
-          {/* Presenters (medium weight) */}
-          <div className="pt-4">
-            <p className="text-2xl md:text-3xl font-bold text-green-300 tracking-wide">
+          {/* Presenters */}
+          <div className="pt-2 md:pt-4">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-300 tracking-wide">
               KIRAN & VIDYASHREE C
             </p>
           </div>
           
           {/* Institution */}
-          <div className="text-base md:text-lg font-medium text-white leading-relaxed">
+          <div className="text-sm sm:text-base md:text-lg font-medium text-white leading-relaxed px-2">
             <p className="font-semibold">Maharajas Institute of Technology</p>
             <p className="text-white/90">First Grade College, Mysore</p>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
-          <ArrowRight className="transform rotate-90 w-8 h-8" />
+        <div className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70 z-20">
+          <ArrowRight className="transform rotate-90 w-6 h-6 md:w-8 md:h-8" />
         </div>
       </section>
 
