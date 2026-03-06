@@ -520,6 +520,37 @@ function HomePage() {
               The question is not whether Kokkare Bellur can survive.<br />
               The question is <span className="text-orange-500 underline decoration-2 underline-offset-8">whether we choose to protect it</span>.
             </p>
+
+            {/* Gratitude Section */}
+            <div className="mt-32 pt-16 border-t border-stone-800">
+              <div className="max-w-3xl mx-auto text-center">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Thank You</h3>
+                <p className="text-lg md:text-xl text-stone-400 leading-relaxed mb-8">
+                  We extend our heartfelt gratitude to <span className="text-white font-semibold">INNOTHON 2026</span> and{' '}
+                  <span className="text-white font-semibold">Hindustan Institute of Technology and Science</span> for providing this incredible platform 
+                  to present our vision for environmental conservation through technology.
+                </p>
+                <p className="text-lg text-stone-400 leading-relaxed">
+                  This opportunity has allowed us to explore how blockchain and AI can create real-world impact 
+                  in preserving our natural heritage. Thank you for believing in innovation for social good.
+                </p>
+                
+                <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-stone-500 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Team: <span className="text-yellow-400 font-medium">KIRAN & VIDYASHREE C</span></span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>Institution: <span className="text-stone-300">MITFGC, Mysore</span></span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span>Event: <span className="text-orange-400">March 6, 2026</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
