@@ -14,7 +14,6 @@ import {
   Trash2,
   Activity // Importing Activity to fix potential missing export issue
 } from 'lucide-react';
-import heroVideo from './assets/hero.mp4';
 import paintedStorkImg from './assets/painted_stork_gen.png';
 import pelicanImg from './assets/pelican_gen.png';
 import villageImg from './assets/village_birds_gen.png';
@@ -200,7 +199,7 @@ function App() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-stone-900">
 
-      {/* 🟢 HERO SECTION (Landing) */}
+      {/* 🟢 HERO SECTION - Presentation Title Slide */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
@@ -208,70 +207,39 @@ function App() {
             loop
             muted
             playsInline
+            preload="auto"
             className="w-full h-full object-cover"
           >
-            <source src={heroVideo} type="video/mp4" />
+            <source src="/hero.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+          {/* Simple dark overlay - no gradients */}
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        {/* Event Badge - Top Left Corner */}
-        <div className="absolute top-6 left-6 z-20 bg-blue-600/90 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-400/30">
-          <p className="text-sm md:text-base font-bold text-white">INNOTHON 2026 · March 6</p>
-        </div>
-
-        {/* Presenter Info - Top Right Corner */}
-        <div className="absolute top-6 right-6 z-20 bg-black/40 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20 text-right">
-          <p className="text-xs md:text-sm font-bold text-green-300">KIRAN & VIDYASHREE C</p>
-          <p className="text-xs text-white/80">MITFGC, Mysore</p>
-        </div>
-
-        {/* Main Hero Content */}
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto text-white space-y-8">
+        {/* Presentation Content - Centered, Formal */}
+        <div className="relative z-10 text-center px-8 max-w-5xl mx-auto text-white space-y-12">
           
-          {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1] drop-shadow-2xl">
-            Kokkare Bellur:
-            <br />
-            <span className="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
-              A Sanctuary Without Fences
-            </span>
-          </h1>
-
-          {/* Subheading - The Crisis */}
-          <p className="text-xl md:text-2xl lg:text-3xl text-stone-200 font-light leading-relaxed max-w-3xl mx-auto">
-            A rare community-led sanctuary where painted storks nest in village life — 
-            now threatened by vanishing wetlands and pollution.
+          {/* Event Label (small, top) */}
+          <p className="text-sm md:text-base font-semibold uppercase tracking-[0.3em] text-white/80">
+            INNOTHON 2026
           </p>
-
-          {/* Primary CTA */}
-          <div className="pt-6">
-            <a
-              href="#pledge"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-lg md:text-xl font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105"
-            >
-              <Heart size={24} className="fill-white" />
-              Add My Support
-              <ArrowRight size={24} />
-            </a>
-          </div>
-
-          {/* Supporting Stats */}
-          <div className="pt-8 grid grid-cols-3 gap-6 max-w-2xl mx-auto text-center">
-            <div className="space-y-1">
-              <p className="text-3xl md:text-4xl font-black text-green-400">100+</p>
-              <p className="text-xs md:text-sm text-stone-300 uppercase tracking-wide">Painted Storks</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-3xl md:text-4xl font-black text-blue-400">0</p>
-              <p className="text-xs md:text-sm text-stone-300 uppercase tracking-wide">Fences or Guards</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-3xl md:text-4xl font-black text-orange-400">50+</p>
-              <p className="text-xs md:text-sm text-stone-300 uppercase tracking-wide">Years of Tradition</p>
-            </div>
+          
+          {/* Project Title (large, centered) */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+            Kokkare Bellur:<br />
+            A Sanctuary Without Fences
+          </h1>
+          
+          {/* Presenters (medium weight) */}
+          <p className="text-xl md:text-2xl font-semibold text-white pt-8">
+            KIRAN & VIDYASHREE C
+          </p>
+          
+          {/* Institution (lighter, smaller) */}
+          <div className="text-base md:text-lg font-normal text-white/90 leading-relaxed">
+            <p>Maharajas Institute of Technology</p>
+            <p>Faculty of Graduate Studies, Mysore</p>
           </div>
         </div>
 
