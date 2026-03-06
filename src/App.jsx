@@ -200,22 +200,19 @@ function App() {
     <div className="min-h-screen bg-stone-50 text-stone-800 font-sans selection:bg-orange-200 selection:text-stone-900 overflow-x-hidden">
 
       {/* 🟢 HERO SECTION - Presentation Title Slide */}
-      <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden w-full">
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23000'/%3E%3C/svg%3E"
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
+      <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden w-full bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
+                            radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                            radial-gradient(circle at 50% 50%, rgba(251, 146, 60, 0.2) 0%, transparent 50%)`,
+            animation: 'pulse 8s ease-in-out infinite'
+          }}></div>
+        </div>
         
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        {/* Dark Overlay for text contrast */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
 
         {/* Presentation Content - Centered, Formal */}
         <div className="relative z-20 text-center px-4 sm:px-6 md:px-8 max-w-6xl mx-auto text-white space-y-6 md:space-y-8 py-8 w-full">
@@ -230,19 +227,19 @@ function App() {
             </p>
           </div>
 
-          {/* Event Details - Prominent Position */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 text-center max-w-3xl mx-auto py-3 md:py-4">
-            <div className="bg-blue-600/80 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 rounded-lg md:rounded-xl border border-blue-400/50 md:border-2 shadow-lg">
-              <p className="text-[10px] sm:text-xs uppercase tracking-wider text-blue-200 mb-1 md:mb-2 font-semibold">Date</p>
-              <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white leading-tight">6th March<br className="sm:hidden" /> 2026</p>
+          {/* Event Details - Compact */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center max-w-2xl mx-auto py-2">
+            <div className="bg-blue-600/80 backdrop-blur-sm py-2 px-3 sm:py-3 sm:px-4 rounded-lg border border-blue-400/50 shadow-lg">
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-wide text-blue-200 mb-1 font-semibold">Date</p>
+              <p className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">6 Mar 2026</p>
             </div>
-            <div className="bg-blue-600/80 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 rounded-lg md:rounded-xl border border-blue-400/50 md:border-2 shadow-lg">
-              <p className="text-[10px] sm:text-xs uppercase tracking-wider text-blue-200 mb-1 md:mb-2 font-semibold">Time</p>
-              <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white">8:00 AM</p>
+            <div className="bg-blue-600/80 backdrop-blur-sm py-2 px-3 sm:py-3 sm:px-4 rounded-lg border border-blue-400/50 shadow-lg">
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-wide text-blue-200 mb-1 font-semibold">Time</p>
+              <p className="text-xs sm:text-sm md:text-base font-bold text-white">8:00 AM</p>
             </div>
-            <div className="bg-blue-600/80 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-2 sm:px-4 md:px-6 rounded-lg md:rounded-xl border border-blue-400/50 md:border-2 shadow-lg">
-              <p className="text-[10px] sm:text-xs uppercase tracking-wider text-blue-200 mb-1 md:mb-2 font-semibold">Venue</p>
-              <p className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white leading-tight">Hindustan<br className="sm:hidden" /> College</p>
+            <div className="bg-blue-600/80 backdrop-blur-sm py-2 px-3 sm:py-3 sm:px-4 rounded-lg border border-blue-400/50 shadow-lg">
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-wide text-blue-200 mb-1 font-semibold">Venue</p>
+              <p className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">Hindustan</p>
             </div>
           </div>
 
