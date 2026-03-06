@@ -216,73 +216,57 @@ function App() {
         <div className="absolute inset-0 bg-black/60 z-10"></div>
 
         {/* Presentation Content - Centered, Formal */}
-        <div className="relative z-20 text-center px-6 sm:px-8 md:px-12 max-w-6xl mx-auto text-white space-y-4 md:space-y-6 py-12 w-full">
+        <div className="relative z-20 text-center px-6 sm:px-8 md:px-12 max-w-6xl mx-auto text-white space-y-5 md:space-y-7 py-12 w-full">
           
           {/* Event Header */}
-          <div className="space-y-2">
-            <p className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold uppercase tracking-wide text-cyan-300 leading-snug break-words">
+          <div className="space-y-3">
+            <p className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium uppercase tracking-wide text-white/70 leading-snug break-words">
               National Level Inter Collegiate Management, IT, Aviation & Cultural Fest
             </p>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black uppercase tracking-wide text-orange-400">
+            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide text-orange-400">
               INNOTHON - 2026
             </p>
           </div>
 
-          {/* Event Details - Compact */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center max-w-xl mx-auto py-2">
-            <div className="bg-purple-600/80 backdrop-blur-sm py-2 px-2 sm:px-3 rounded-lg border border-purple-400/50">
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-wide text-purple-200 mb-1 font-semibold">Date</p>
-              <p className="text-[11px] sm:text-xs md:text-sm font-bold text-white leading-tight break-words">6 Mar 2026</p>
-            </div>
-            <div className="bg-pink-600/80 backdrop-blur-sm py-2 px-2 sm:px-3 rounded-lg border border-pink-400/50">
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-wide text-pink-200 mb-1 font-semibold">Time</p>
-              <p className="text-[11px] sm:text-xs md:text-sm font-bold text-white">8:00 AM</p>
-            </div>
-            <div className="bg-indigo-600/80 backdrop-blur-sm py-2 px-2 sm:px-3 rounded-lg border border-indigo-400/50">
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-wide text-indigo-200 mb-1 font-semibold">Venue</p>
-              <p className="text-[11px] sm:text-xs md:text-sm font-bold text-white leading-tight break-words">Hindustan</p>
-            </div>
-          </div>
-
           {/* Divider */}
-          <div className="flex items-center justify-center gap-2 md:gap-3 py-2 md:py-3">
-            <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-gradient-to-r from-pink-400 to-purple-400"></div>
-            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-yellow-400 rounded-full"></div>
-            <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-gradient-to-l from-pink-400 to-purple-400"></div>
+          <div className="flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4">
+            <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-white/30"></div>
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white/40 rounded-full"></div>
+            <div className="h-[1px] md:h-[2px] w-12 md:w-16 bg-white/30"></div>
           </div>
 
           {/* Theme - MOVED ABOVE TITLE */}
-          <div className="bg-amber-500/20 backdrop-blur-sm py-2 md:py-3 px-4 md:px-6 rounded-lg border border-amber-400/40 max-w-4xl mx-auto">
-            <p className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider text-amber-300 mb-1">Theme</p>
-            <p className="text-[11px] sm:text-xs md:text-sm lg:text-base font-semibold text-yellow-100 leading-snug break-words">
+          <div className="bg-white/10 backdrop-blur-sm py-2 md:py-3 px-4 md:px-6 rounded-lg border border-white/20 max-w-4xl mx-auto">
+            <p className="text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-wider text-white/60 mb-1">Theme</p>
+            <p className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-white/80 leading-snug break-words">
               AI-Driven Innovation for Social Impact and Sustainable Development
             </p>
           </div>
           
-          {/* Project Title */}
-          <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-tight text-white break-words px-2">
+          {/* Project Title - HIGHLIGHTED */}
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white break-words px-2">
             Kokkare Bellur:<br />
-            <span className="text-emerald-400">A Sanctuary Without Fences</span>
+            <span className="text-green-400">A Sanctuary Without Fences</span>
           </h1>
 
           {/* Presented By Label */}
-          <div className="pt-2">
-            <p className="text-xs sm:text-sm md:text-base text-rose-300 uppercase tracking-widest font-light">
+          <div className="pt-3">
+            <p className="text-xs sm:text-sm md:text-base text-white/50 uppercase tracking-widest font-light">
               Presented by
             </p>
           </div>
           
-          {/* Presenters */}
+          {/* Presenters - HIGHLIGHTED */}
           <div>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-lime-300 tracking-wide break-words">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-yellow-400 tracking-wide break-words">
               KIRAN & VIDYASHREE C
             </p>
           </div>
           
           {/* Institution */}
-          <div className="text-xs sm:text-sm md:text-base font-medium text-slate-100 leading-relaxed break-words">
-            <p className="font-semibold text-teal-300">Maharajas Institute of Technology</p>
-            <p className="text-sky-200">First Grade College, Mysore</p>
+          <div className="text-xs sm:text-sm md:text-base font-medium text-white/70 leading-relaxed break-words">
+            <p className="font-semibold">Maharajas Institute of Technology</p>
+            <p className="text-white/60">First Grade College, Mysore</p>
           </div>
         </div>
 
