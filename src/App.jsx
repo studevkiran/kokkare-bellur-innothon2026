@@ -208,9 +208,20 @@ function App() {
             muted
             playsInline
             webkit-playsinline="true"
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+            x-webkit-airplay="allow"
             preload="auto"
             className="w-full h-full object-cover"
-            onLoadedData={(e) => e.target.play().catch(() => {})}
+            ref={(video) => {
+              if (video) {
+                video.play().catch((error) => {
+                  console.log("Video autoplay failed:", error);
+                  // Try playing on user interaction
+                  document.addEventListener('click', () => video.play(), { once: true });
+                });
+              }
+            }}
           >
             <source src="/hero.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -223,13 +234,29 @@ function App() {
         <div className="relative z-10 text-center px-6 md:px-8 max-w-6xl mx-auto text-white space-y-8">
           
           {/* Event Header */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             <p className="text-lg md:text-xl font-bold uppercase tracking-[0.25em] text-blue-400">
               National Level Inter Collegiate Management, IT, Aviation & Cultural Fest
             </p>
             <p className="text-2xl md:text-4xl font-black uppercase tracking-wide text-orange-400">
               INNOTHON - 2026
             </p>
+          </div>
+
+          {/* Event Details - Prominent Position */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-3xl mx-auto py-4">
+            <div className="bg-blue-600/80 backdrop-blur-sm py-4 px-6 rounded-xl border-2 border-blue-400/50 shadow-lg">
+              <p className="text-sm uppercase tracking-wider text-blue-200 mb-2 font-semibold">Date</p>
+              <p className="text-xl md:text-2xl font-black text-white">6th March 2026</p>
+            </div>
+            <div className="bg-blue-600/80 backdrop-blur-sm py-4 px-6 rounded-xl border-2 border-blue-400/50 shadow-lg">
+              <p className="text-sm uppercase tracking-wider text-blue-200 mb-2 font-semibold">Time</p>
+              <p className="text-xl md:text-2xl font-black text-white">8:00 AM</p>
+            </div>
+            <div className="bg-blue-600/80 backdrop-blur-sm py-4 px-6 rounded-xl border-2 border-blue-400/50 shadow-lg">
+              <p className="text-sm uppercase tracking-wider text-blue-200 mb-2 font-semibold">Venue</p>
+              <p className="text-xl md:text-2xl font-black text-white">Hindustan College</p>
+            </div>
           </div>
 
           {/* Divider */}
@@ -254,7 +281,7 @@ function App() {
           </div>
           
           {/* Presenters (medium weight) */}
-          <div className="pt-6">
+          <div className="pt-4">
             <p className="text-2xl md:text-3xl font-bold text-green-300 tracking-wide">
               KIRAN & VIDYASHREE C
             </p>
@@ -264,22 +291,6 @@ function App() {
           <div className="text-base md:text-lg font-medium text-white leading-relaxed">
             <p className="font-semibold">Maharajas Institute of Technology</p>
             <p className="text-white/90">First Grade College, Mysore</p>
-          </div>
-
-          {/* Event Details */}
-          <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-3xl mx-auto">
-            <div className="bg-black/30 backdrop-blur-sm py-3 px-4 rounded-lg border border-white/20">
-              <p className="text-xs uppercase tracking-wider text-blue-300 mb-1">Date</p>
-              <p className="text-lg font-bold text-white">6th March 2026</p>
-            </div>
-            <div className="bg-black/30 backdrop-blur-sm py-3 px-4 rounded-lg border border-white/20">
-              <p className="text-xs uppercase tracking-wider text-blue-300 mb-1">Time</p>
-              <p className="text-lg font-bold text-white">8:00 AM</p>
-            </div>
-            <div className="bg-black/30 backdrop-blur-sm py-3 px-4 rounded-lg border border-white/20">
-              <p className="text-xs uppercase tracking-wider text-blue-300 mb-1">Venue</p>
-              <p className="text-lg font-bold text-white">Hindustan College</p>
-            </div>
           </div>
         </div>
 
